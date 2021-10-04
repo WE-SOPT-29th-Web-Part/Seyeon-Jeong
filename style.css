@@ -1,0 +1,104 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+li {
+  list-style: none;
+}
+.header {
+  height: 50px;
+  color: white;
+  background-color: mediumseagreen;
+}
+.header__logo {
+  font-size: 2rem;
+  text-align: center;
+  height: 50px;
+  line-height: 50px;
+}
+.options {
+  text-align: center;
+  margin: 10px 0;
+}
+.options__button {
+  background-color: gold;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+.todos {
+  background-color: lightgray;
+  display: flex;
+  flex: 1 auto;
+}
+.todos__today {
+  border-right: 1px solid black;
+}
+.todos__section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+}
+.todos_header {
+  display: block;
+  font-size: 0.5rem;
+}
+.todos__items {
+  flex: 1 auto;
+  width: 100%;
+  padding: 0;
+}
+.todos__item {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  padding: 5px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid black;
+}
+.todos__delete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  height: 20px;
+  padding-bottom: 5px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+.todos__input {
+  width: 100%;
+  height: 30px;
+  margin-bottom: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: transparent;
+}
+.todos__add {
+  width: 30px;
+  height: 30px;
+  font-size: 1.5rem;
+  border: 1px solid black;
+  border-radius: 50%;
+  background-color: transparent;
+  cursor: pointer;
+}
+.footer {
+  text-align: center;
+  height: 50px;
+  line-height: 50px;
+  background-color: mediumseagreen;
+  color: white;
+  font-weight: bold;
+}
