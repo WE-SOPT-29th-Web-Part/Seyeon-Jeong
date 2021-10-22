@@ -3,6 +3,9 @@
   padding: 0px;
   box-sizing: border-box;
 }
+a {
+  text-decoration: none;
+}
 body {
   width: 100vw;
   height: 100vh;
@@ -81,6 +84,8 @@ header label {
   margin: 0 8px;
   text-align: center;
   line-height: 30px;
+  text-decoration: none;
+  color: black;
 }
 .header__user-icon {
   width: 40px;

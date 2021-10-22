@@ -7,7 +7,9 @@ history.addEventListener("click", () => {
 
 const colorChange = (selection) => {
   selections.forEach((e) => {
-    e === selection ? (e.style.color = "red") : (e.style.color = "black");
+    e === selection
+      ? (e.style.color = "mediumseagreen")
+      : (e.style.color = "black");
   });
 };
 selections.forEach((selection) => {
