@@ -1,0 +1,17 @@
+input {
+  border: none;
+  outline: none;
+}
+div {
+  display: inline-block;
+}
+.tag {
+  height: 32px;
+  line-height: 32px;
+  cursor: pointer;
+  padding: 0 16px;
+  border-radius: 20px;
+  background-color: rgb(241, 243, 245);
+  color: mediumseagreen;
+  margin: 0 2.5px;
+}
