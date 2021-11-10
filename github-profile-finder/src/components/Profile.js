@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-function Profile({ userInfo, card }) {
+function Profile({ userInfo, setCardOpen }) {
   return (
     <Card>
-      <button className="close" onClick={() => card(false)}>
+      <button className="close" onClick={() => setCardOpen(false)}>
         닫기
       </button>
-      <img className="card-image" src={userInfo?.avatar_url}></img>
+      <img className="card-image" src={userInfo?.avatar_url} alt='card'></img>
       <div className="user-id">{userInfo?.login}</div>
-      <a className="visit" href={userInfo?.html_url} target="_blank">
+      <a className="visit" href={userInfo?.html_url} target="_blank" rel="noreferrer">
         Visit Github
       </a>
       <div className="github-info-con">
@@ -50,7 +50,7 @@ const Card = styled.div`
     outline: none;
     position: absolute;
     right: 10px;
-    top 10px;
+    top:10px;
     cursor: pointer;
   }
   .card-image{

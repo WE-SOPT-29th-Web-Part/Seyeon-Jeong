@@ -1,18 +1,21 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
-function Input({ set, card }) {
+function Input({ setUserInfo, setCardOpen , loading}) {
   const [userId, setUserId] = useState("");
   async function getUser(e) {
     e.preventDefault();
-    await axios
-      .get(`https://api.github.com/users/${userId}`)
-      .then((res) => {
-        set(res.data);
-        card(true);
-      })
-      .catch(() => set("error"));
+    loading(true);
+    try{
+      const {data} = await axios.get(`https://api.github.com/users/${userId}`);
+      setUserInfo(data);
+      setCardOpen(true);
+    }catch(err){
+      setUserInfo('error')
+      setCardOpen(false);
+    }
     setUserId("");
+    loading(false);
   }
   const onChange = (e) => setUserId(e.target.value);
   return (
@@ -36,7 +39,7 @@ const InputContainer = styled.div`
     background-color: rgb(36, 39, 43);
     color: rgb(229, 230, 231);
     outline: none;
-    padding 1rem;
+    padding: 1rem;
     
   }
 `;
