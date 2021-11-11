@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import History from "./History";
 function Input({ setUserInfo, setCardOpen , loading}) {
   const [userId, setUserId] = useState("");
+  const [history, setHistory] = useState([]);
+
   async function getUser(e) {
     e.preventDefault();
     loading(true);
@@ -10,12 +13,23 @@ function Input({ setUserInfo, setCardOpen , loading}) {
       const {data} = await axios.get(`https://api.github.com/users/${userId}`);
       setUserInfo(data);
       setCardOpen(true);
+
     }catch(err){
       setUserInfo('error')
       setCardOpen(false);
     }
     setUserId("");
+    createHistory(userId);
     loading(false);
+  }
+
+  function createHistory(userId) {
+    let newHistory = [...history];
+    if(newHistory.length < 3) newHistory.push(userId);
+    else newHistory = newHistory.splice(1).concat(userId);
+  
+    localStorage.setItem('history',newHistory);
+    setHistory(newHistory);
   }
   const onChange = (e) => setUserId(e.target.value);
   return (
@@ -26,10 +40,12 @@ function Input({ setUserInfo, setCardOpen , loading}) {
           value={userId || ""}
           onChange={onChange}
         ></input>
+      <History history={history} setHistory={setHistory}/>
       </form>
     </InputContainer>
   );
 }
+
 const InputContainer = styled.div`
   input {
     width: 320px;
