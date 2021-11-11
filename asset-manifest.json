@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/we-sopt-29th-web-part/Seyeon-Jeong/github-profile-finder/static/css/main.ea1455b2.chunk.css",
-    "main.js": "/we-sopt-29th-web-part/Seyeon-Jeong/github-profile-finder/static/js/main.e7a7552f.chunk.js",
-    "main.js.map": "/we-sopt-29th-web-part/Seyeon-Jeong/github-profile-finder/static/js/main.e7a7552f.chunk.js.map",
-    "runtime-main.js": "/we-sopt-29th-web-part/Seyeon-Jeong/github-profile-finder/static/js/runtime-main.eef2f3f8.js",
-    "runtime-main.js.map": "/we-sopt-29th-web-part/Seyeon-Jeong/github-profile-finder/static/js/runtime-main.eef2f3f8.js.map",
-    "static/js/2.30ced98e.chunk.js": "/we-sopt-29th-web-part/Seyeon-Jeong/github-profile-finder/static/js/2.30ced98e.chunk.js",
-    "static/js/2.30ced98e.chunk.js.map": "/we-sopt-29th-web-part/Seyeon-Jeong/github-profile-finder/static/js/2.30ced98e.chunk.js.map",
-    "index.html": "/we-sopt-29th-web-part/Seyeon-Jeong/github-profile-finder/index.html",
-    "static/css/main.ea1455b2.chunk.css.map": "/we-sopt-29th-web-part/Seyeon-Jeong/github-profile-finder/static/css/main.ea1455b2.chunk.css.map",
-    "static/js/2.30ced98e.chunk.js.LICENSE.txt": "/we-sopt-29th-web-part/Seyeon-Jeong/github-profile-finder/static/js/2.30ced98e.chunk.js.LICENSE.txt"
+    "main.css": "/we-sopt-29th-web-part/Seyeon-Jeong/static/css/main.ea1455b2.chunk.css",
+    "main.js": "/we-sopt-29th-web-part/Seyeon-Jeong/static/js/main.e7a7552f.chunk.js",
+    "main.js.map": "/we-sopt-29th-web-part/Seyeon-Jeong/static/js/main.e7a7552f.chunk.js.map",
+    "runtime-main.js": "/we-sopt-29th-web-part/Seyeon-Jeong/static/js/runtime-main.0fff7095.js",
+    "runtime-main.js.map": "/we-sopt-29th-web-part/Seyeon-Jeong/static/js/runtime-main.0fff7095.js.map",
+    "static/js/2.45d2adfc.chunk.js": "/we-sopt-29th-web-part/Seyeon-Jeong/static/js/2.45d2adfc.chunk.js",
+    "static/js/2.45d2adfc.chunk.js.map": "/we-sopt-29th-web-part/Seyeon-Jeong/static/js/2.45d2adfc.chunk.js.map",
+    "index.html": "/we-sopt-29th-web-part/Seyeon-Jeong/index.html",
+    "static/css/main.ea1455b2.chunk.css.map": "/we-sopt-29th-web-part/Seyeon-Jeong/static/css/main.ea1455b2.chunk.css.map",
+    "static/js/2.45d2adfc.chunk.js.LICENSE.txt": "/we-sopt-29th-web-part/Seyeon-Jeong/static/js/2.45d2adfc.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.eef2f3f8.js",
-    "static/js/2.30ced98e.chunk.js",
+    "static/js/runtime-main.0fff7095.js",
+    "static/js/2.45d2adfc.chunk.js",
     "static/css/main.ea1455b2.chunk.css",
     "static/js/main.e7a7552f.chunk.js"
   ]
