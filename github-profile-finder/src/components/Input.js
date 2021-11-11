@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import styled from "styled-components";
 import axios from "axios";
 import History from "./History";
 function Input({ setUserInfo, setCardOpen , loading}) {
   const [userId, setUserId] = useState("");
-  const [history, setHistory] = useState([]);
+  const [history, setHistory] = useState(
+    localStorage.getItem('history') ? 
+    localStorage.getItem('history').split(',') : []);
 
-  async function getUser(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
+    getUser(userId);
+  }
+  async function getUser(userId) {
     loading(true);
     try{
       const {data} = await axios.get(`https://api.github.com/users/${userId}`);
@@ -22,11 +27,13 @@ function Input({ setUserInfo, setCardOpen , loading}) {
     createHistory(userId);
     loading(false);
   }
-
-  function createHistory(userId) {
+  function createHistory(input) {
     let newHistory = [...history];
-    if(newHistory.length < 3) newHistory.push(userId);
-    else newHistory = newHistory.splice(1).concat(userId);
+
+    if(!newHistory.includes(input)){
+      if(newHistory.length >= 3) newHistory.pop();
+      newHistory.unshift(input);
+    }
   
     localStorage.setItem('history',newHistory);
     setHistory(newHistory);
@@ -34,14 +41,14 @@ function Input({ setUserInfo, setCardOpen , loading}) {
   const onChange = (e) => setUserId(e.target.value);
   return (
     <InputContainer>
-      <form onSubmit={getUser}>
+      <form onSubmit={(e)=>handleSubmit(e)} >
         <input
           placeholder="GitHub 프로필을 검색해보세요."
           value={userId || ""}
           onChange={onChange}
         ></input>
-      <History history={history} setHistory={setHistory}/>
       </form>
+      <History history={history} setHistory={setHistory} getUser={getUser}/>
     </InputContainer>
   );
 }
