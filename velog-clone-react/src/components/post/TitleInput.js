@@ -1,9 +1,15 @@
 import React from "react";
 import styled from "styled-components";
-function TitleInput() {
+function TitleInput({ titleInput, setTitleInput }) {
+  const handleTitle = (e) => setTitleInput(e.target.value);
   return (
     <StyledTitleInput>
-      <input maxLength="40" placeholder="제목을 입력하세요."></input>
+      <input
+        maxLength="40"
+        placeholder="제목을 입력하세요."
+        value={titleInput || ""}
+        onChange={handleTitle}
+      ></input>
     </StyledTitleInput>
   );
 }

@@ -1,16 +1,23 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { ReactComponent as ExitIcon } from "../../assets/icons/exit.svg";
-function Exit() {
+function Exit({ setPublishModal }) {
+  const handlePublish = () => setPublishModal(true);
+
   return (
     <StyledExit>
-      <div className="exit-container">
-        <ExitIcon />
-        나가기
-      </div>
+      <Link to="/">
+        <div className="exit-container">
+          <ExitIcon />
+          나가기
+        </div>
+      </Link>
       <div className="button-container">
         <button className="temp-save">임시저장</button>
-        <button className="save">출간하기</button>
+        <button className="save" onClick={handlePublish}>
+          출간하기
+        </button>
       </div>
     </StyledExit>
   );
@@ -22,8 +29,16 @@ const StyledExit = styled.div`
   display: flex;
   align-items: center;
 
+  a {
+    color: black;
+  }
   svg {
     margin: 0 5px;
+  }
+  a:hover,
+  svg:hover {
+    fill: #ff5a5a;
+    color: #ff5a5a;
   }
   .exit-container {
     display: flex;

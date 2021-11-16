@@ -11,17 +11,18 @@ function Articles() {
     const getArticles = async () => {
       try {
         const { data } = await axios.get("/article");
-        setArticles(data);
         console.log(data);
-      } catch (err) {}
+        setArticles(data.reverse());
+      } catch (err) {
+        console.error(err);
+      }
     };
     getArticles();
   }, []);
-  const renderAtricles = () => {
-    const newestArticles = articles.reverse();
-    return newestArticles.map((article) => <Article info={article} />);
+  const renderArticles = () => {
+    return articles.map((article) => <Article info={article} />);
   };
-  return <StyledArticles>{renderAtricles()}</StyledArticles>;
+  return <StyledArticles>{renderArticles()}</StyledArticles>;
 }
 const StyledArticles = styled.div`
   width: 100%;

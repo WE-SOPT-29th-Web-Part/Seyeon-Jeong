@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-function TagInput({ tagInput, setTagInput }) {
-  const [tags, setTags] = useState([]);
+function TagInput({ tags, setTags }) {
+  const [tagInput, setTagInput] = useState("");
+
   const handleTag = (e) => setTagInput(e.target.value);
   const addTag = (e) => {
     if (e.key === "Enter") {
@@ -29,10 +30,11 @@ function TagInput({ tagInput, setTagInput }) {
 
 const StyledTagInput = styled.div`
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   padding: 10px 0;
   input {
-    width: 100%;
+    width: 100px;
     height: 1vw;
     padding: 20px 0;
     border: none;
@@ -49,6 +51,7 @@ const StyledTag = styled.div`
   border-radius: 15px;
   color: mediumseagreen;
   margin-right: 5px;
+  margin-bottom: 5px;
   white-space: nowrap;
 `;
 export default TagInput;

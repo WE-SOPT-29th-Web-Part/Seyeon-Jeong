@@ -1,9 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-function StoryInput() {
+function StoryInput({ storyInput, setStoryInput }) {
+  const handleStory = (e) => setStoryInput(e.target.value);
   return (
     <StyledStoryInput>
-      <textarea placeholder="당신의 이야기를 적어보세요..." />
+      <textarea
+        placeholder="당신의 이야기를 적어보세요..."
+        value={storyInput || ""}
+        onChange={handleStory}
+      />
     </StyledStoryInput>
   );
 }

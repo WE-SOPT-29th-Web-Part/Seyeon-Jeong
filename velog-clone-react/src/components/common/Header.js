@@ -9,9 +9,9 @@ function Header() {
     <StyledHeader>
       <span className="title">SOPT.log</span>
       <img src={searchIcon} alt="search-icon" className="search" />
-      <button className="new-post">
-        <Link to="/post">새 글 작성</Link>
-      </button>
+      <Link to="/post">
+        <button className="new-post">새 글 작성</button>
+      </Link>
       <img src={profileImage} alt="search-icon" className="profile" />
       <img src={arrowDownIcon} alt="arrow-down-icon" className="arrow" />
     </StyledHeader>
@@ -38,6 +38,9 @@ const StyledHeader = styled.div`
     height: 30px;
     cursor: pointer;
     margin: 0 10px;
+  }
+  .new-post:hover {
+    background-color: lightgray;
   }
   .title {
     font-weight: bold;
