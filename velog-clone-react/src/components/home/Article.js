@@ -1,9 +1,43 @@
-import React from "react";
+import React, { useEffect, forwardRef, useRef } from "react";
 import styled from "styled-components";
-function Article({ info }) {
+import { gsap } from "gsap";
+const Article = forwardRef(({ info }) => {
   const { title, summary, tags, date } = info;
+
+  const onEnter = ({ currentTarget }) => {
+    gsap.to(currentTarget, {
+      scale: 1.01,
+      boxShadow: "0px 0px 6px rgba(0,0,0,0.1)",
+      duration: 0.5,
+    });
+  };
+  const onLeave = ({ currentTarget }) => {
+    gsap.to(currentTarget, {
+      scale: 1,
+      boxShadow: "none",
+    });
+  };
+  useEffect(() => {
+    const ani = gsap.fromTo(
+      ".article",
+      {
+        x: -100,
+        opacity: 0,
+      },
+      {
+        x: 0,
+        opacity: 1,
+        duration: 1,
+      }
+    );
+    return () => ani.kill();
+  });
   return (
-    <StyledArticle>
+    <StyledArticle
+      className="article"
+      onMouseEnter={onEnter}
+      onMouseLeave={onLeave}
+    >
       <div className="title">{title}</div>
       <div className="summary">{summary}</div>
       {tags.map((tag) => (
@@ -12,10 +46,10 @@ function Article({ info }) {
       <div className="date">{date}</div>
     </StyledArticle>
   );
-}
+});
 const StyledArticle = styled.div`
   border-bottom: 2px solid whitesmoke;
-  padding: 100px 0;
+  padding: 100px 10px;
   cursor: pointer;
   .title {
     font-size: 1.5rem;

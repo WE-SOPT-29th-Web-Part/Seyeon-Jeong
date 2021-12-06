@@ -1,10 +1,13 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import { useNavigate } from "react-router";
+import { gsap } from "gsap";
 import styled from "styled-components";
 function PublishModal({ setPublishModal, newPost }) {
   const [summaryInput, setSummaryInput] = useState("");
+  const [modalOpen, setModalOpen] = useState("");
   const navigate = useNavigate();
+
   const updateNewPost = () => {
     const date = new Date();
     const today = `${date.getFullYear()}년 ${
@@ -17,15 +20,40 @@ function PublishModal({ setPublishModal, newPost }) {
     if (e.target.value.length > 150) return;
     setSummaryInput(e.target.value);
   };
-  const closeModal = () => setPublishModal(false);
+  const closeModal = async () => {
+    await modalOpen.reverse();
+    setPublishModal(false);
+  };
   const publishData = async () => {
     updateNewPost();
     await axios.post("http://localhost:4000/article", newPost);
+    await gsap.to(".post", {
+      opacity: 0,
+      rotate: 180,
+      duration: 1.5,
+      ease: "elastic.in(1, 0.3)",
+    });
     navigate(-1);
   };
+  useLayoutEffect(() => {
+    const instance = gsap.fromTo(
+      ".modal",
+      {
+        opacity: 0,
+      },
+      {
+        opacity: 1,
+      }
+    );
+    setModalOpen(instance);
+
+    return () => {
+      instance.kill();
+    };
+  }, []);
   return (
-    <StyledPublishModal>
-      <div className="title">포스트 미리보기</div>
+    <StyledPublishModal className="modal">
+      <div className="title box1">포스트 미리보기</div>
       <input type="file"></input>
       <StyledPublishInfo>
         <div className="text-wrapper">
@@ -56,7 +84,7 @@ const StyledPublishModal = styled.div`
   top: 0;
   position: absolute;
   padding: 8rem;
-  background-color: rgba(248, 249, 250, 0.9);
+  background-color: rgb(248, 249, 250);
 
   .title {
     font-size: 1.5rem;
@@ -69,6 +97,7 @@ const StyledPublishModal = styled.div`
 const StyledPublishInfo = styled.div`
   display: flex;
   align-items: center;
+
   .text-wrapper {
     display: flex;
     flex-direction: column;

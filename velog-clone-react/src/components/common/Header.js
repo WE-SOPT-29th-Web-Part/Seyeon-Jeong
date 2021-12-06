@@ -40,7 +40,9 @@ const StyledHeader = styled.div`
     margin: 0 10px;
   }
   .new-post:hover {
-    background-color: lightgray;
+    background-color: #63e6be;
+    color: white;
+    border: 1px solid #63e6be;
   }
   .title {
     font-weight: bold;

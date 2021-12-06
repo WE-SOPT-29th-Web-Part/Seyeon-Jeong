@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import Article from "./Article";
@@ -19,6 +19,7 @@ function Articles() {
     };
     getArticles();
   }, []);
+
   const renderArticles = () => {
     return articles.map((article) => <Article info={article} />);
   };
@@ -27,7 +28,6 @@ function Articles() {
 const StyledArticles = styled.div`
   width: 100%;
   flex-grow: 1;
-  flex-basis: 30vh;
 `;
 
 export default Articles;

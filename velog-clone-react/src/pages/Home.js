@@ -24,6 +24,7 @@ function Home() {
 }
 const StyledHome = styled.div`
   width: 100vw;
+  min-height: 100vh;
   padding: 0 5vw;
   box-sizing: border-box;
   display: flex;

@@ -4,6 +4,6 @@ function Series() {
   return <StyledSeries>series</StyledSeries>;
 }
 const StyledSeries = styled.div`
-  flex-basis: 30vh;
+  flex-grow: 1;
 `;
 export default Series;
