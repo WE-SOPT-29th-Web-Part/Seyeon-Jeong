@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { gsap } from "gsap";
 const Article = ({ info }) => {
-  const { title, summary, tags, date, id } = info;
+  const { title, summary, tags, date, thumbnail, id } = info;
 
   const onEnter = ({ currentTarget }) => {
     gsap.to(currentTarget, {
@@ -39,6 +39,7 @@ const Article = ({ info }) => {
       onMouseLeave={onLeave}
     >
       <div className="title">{title}</div>
+      {thumbnail.length ? <img src={thumbnail} alt="thumbnail" /> : null}
       <div className="summary">{summary}</div>
       {tags.map((tag) => (
         <StyledTag>{tag}</StyledTag>
@@ -63,6 +64,9 @@ const StyledArticle = styled.div`
   .date {
     color: gray;
     margin-top: 15px;
+  }
+  img {
+    max-width: 600px;
   }
 `;
 const StyledTag = styled.div`
