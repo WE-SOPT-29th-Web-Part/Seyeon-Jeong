@@ -1,16 +1,16 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import Article from "./Article";
 
 function Articles() {
-  axios.defaults.baseURL = "http://localhost:4000";
+  axios.defaults.baseURL = "http://localhost:5005";
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
     const getArticles = async () => {
       try {
-        const { data } = await axios.get("/article");
+        const { data } = await axios.get("/api/article");
         console.log(data);
         setArticles(data.reverse());
       } catch (err) {

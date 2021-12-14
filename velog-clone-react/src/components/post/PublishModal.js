@@ -1,32 +1,35 @@
 import axios from "axios";
-import React, { useState, useEffect, useLayoutEffect } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import { useNavigate } from "react-router";
 import { gsap } from "gsap";
 import styled from "styled-components";
 function PublishModal({ setPublishModal, newPost }) {
   const [summaryInput, setSummaryInput] = useState("");
+  const [imgInfo, setImgInfo] = useState({
+    imgName: null,
+    imgUrl: null,
+  });
   const [modalOpen, setModalOpen] = useState("");
   const navigate = useNavigate();
 
   const updateNewPost = () => {
-    const date = new Date();
-    const today = `${date.getFullYear()}년 ${
-      date.getMonth() + 1
-    }월 ${date.getDate()}일`;
     newPost.summary = summaryInput;
-    newPost.date = today;
+    newPost.thumbnail = imgInfo.imgUrl;
   };
+
   const handleSummary = (e) => {
     if (e.target.value.length > 150) return;
     setSummaryInput(e.target.value);
   };
+
   const closeModal = async () => {
     await modalOpen.reverse();
     setPublishModal(false);
   };
+
   const publishData = async () => {
     updateNewPost();
-    await axios.post("http://localhost:4000/article", newPost);
+    await axios.post("http://localhost:5005/api/article", newPost);
     await gsap.to(".post", {
       opacity: 0,
       rotate: 180,
@@ -35,6 +38,19 @@ function PublishModal({ setPublishModal, newPost }) {
     });
     navigate(-1);
   };
+
+  const fileLoader = ({ target: { files } }) => {
+    if (!files.length) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      setImgInfo({
+        imgName: files.name,
+        imgUrl: reader.result,
+      });
+    };
+    reader.readAsDataURL(files[0]);
+  };
+
   useLayoutEffect(() => {
     const instance = gsap.fromTo(
       ".modal",
@@ -53,8 +69,13 @@ function PublishModal({ setPublishModal, newPost }) {
   }, []);
   return (
     <StyledPublishModal className="modal">
-      <div className="title box1">포스트 미리보기</div>
-      <input type="file"></input>
+      <StyledPostWrapper>
+        <div>
+          <div className="title box1">포스트 미리보기</div>
+          <input type="file" onChange={fileLoader}></input>
+        </div>
+        <img src={imgInfo.imgUrl} alt={imgInfo.imgName} />
+      </StyledPostWrapper>
       <StyledPublishInfo>
         <div className="text-wrapper">
           <textarea
@@ -92,6 +113,21 @@ const StyledPublishModal = styled.div`
   }
   input {
     margin: 1rem 0;
+    color: transparent;
+  }
+`;
+const StyledPostWrapper = styled.div`
+  display: flex;
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 180px;
+  }
+  img {
+    max-width: 100px;
+    max-height: 100px;
   }
 `;
 const StyledPublishInfo = styled.div`

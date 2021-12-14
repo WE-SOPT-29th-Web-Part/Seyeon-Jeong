@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { v4 } from "uuid";
 import Exit from "../components/post/Exit";
 import PublishModal from "../components/post/PublishModal";
 import StoryInput from "../components/post/StoryInput";
@@ -13,14 +12,11 @@ function Post() {
   const [tags, setTags] = useState([]);
   const [publishModal, setPublishModal] = useState(false);
   const newPost = {
-    id: v4(),
     title: titleInput,
     body: storyInput,
     summary: "",
-    series: "",
     tags,
     thumbnail: "",
-    date: "",
   };
   useEffect(() => {
     const ani = gsap.to(".post", { duration: 1, ease: "bounce.out", y: 0 });

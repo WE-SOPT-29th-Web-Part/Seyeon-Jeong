@@ -1,8 +1,8 @@
-import React, { useEffect, forwardRef, useRef } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { gsap } from "gsap";
-const Article = forwardRef(({ info }) => {
-  const { title, summary, tags, date } = info;
+const Article = ({ info }) => {
+  const { title, summary, tags, date, id } = info;
 
   const onEnter = ({ currentTarget }) => {
     gsap.to(currentTarget, {
@@ -46,7 +46,7 @@ const Article = forwardRef(({ info }) => {
       <div className="date">{date}</div>
     </StyledArticle>
   );
-});
+};
 const StyledArticle = styled.div`
   border-bottom: 2px solid whitesmoke;
   padding: 100px 10px;
