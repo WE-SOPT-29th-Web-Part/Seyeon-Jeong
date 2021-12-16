@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router";
 import styled from "styled-components";
 import { gsap } from "gsap";
 const Article = ({ info }) => {
   const { title, summary, tags, date, thumbnail, id } = info;
-
+  const navigate = useNavigate();
   const onEnter = ({ currentTarget }) => {
     gsap.to(currentTarget, {
       scale: 1.01,
@@ -11,6 +12,10 @@ const Article = ({ info }) => {
       duration: 0.5,
     });
   };
+  const navToArticle = () => {
+    navigate(`./article/${id}`, { state: info });
+  };
+
   const onLeave = ({ currentTarget }) => {
     gsap.to(currentTarget, {
       scale: 1,
@@ -37,6 +42,7 @@ const Article = ({ info }) => {
       className="article"
       onMouseEnter={onEnter}
       onMouseLeave={onLeave}
+      onClick={navToArticle}
     >
       <div className="title">{title}</div>
       {thumbnail.length ? <img src={thumbnail} alt="thumbnail" /> : null}

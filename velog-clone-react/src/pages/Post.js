@@ -5,18 +5,21 @@ import PublishModal from "../components/post/PublishModal";
 import StoryInput from "../components/post/StoryInput";
 import TagInput from "../components/post/TagInput";
 import TitleInput from "../components/post/TitleInput";
+import { useLocation } from "react-router";
 import { gsap } from "gsap";
 function Post() {
-  const [titleInput, setTitleInput] = useState("");
-  const [storyInput, setStoryInput] = useState("");
-  const [tags, setTags] = useState([]);
+  const { state } = useLocation();
+
+  const [titleInput, setTitleInput] = useState(state ? state.title : "");
+  const [storyInput, setStoryInput] = useState(state ? state.body : "");
+  const [tags, setTags] = useState(state ? state.tags : []);
   const [publishModal, setPublishModal] = useState(false);
   const newPost = {
     title: titleInput,
     body: storyInput,
-    summary: "",
     tags,
-    thumbnail: "",
+    summary: state ? state.summary : "",
+    thumbnail: state ? state.thumbnail : "",
   };
   useEffect(() => {
     const ani = gsap.to(".post", { duration: 1, ease: "bounce.out", y: 0 });

@@ -4,10 +4,10 @@ import { useNavigate } from "react-router";
 import { gsap } from "gsap";
 import styled from "styled-components";
 function PublishModal({ setPublishModal, newPost }) {
-  const [summaryInput, setSummaryInput] = useState("");
+  const [summaryInput, setSummaryInput] = useState(newPost.summary);
   const [imgInfo, setImgInfo] = useState({
     imgName: null,
-    imgUrl: null,
+    imgUrl: newPost.thumbnail,
   });
   const [modalOpen, setModalOpen] = useState("");
   const navigate = useNavigate();

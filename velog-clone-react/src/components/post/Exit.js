@@ -1,18 +1,18 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ReactComponent as ExitIcon } from "../../assets/icons/exit.svg";
 function Exit({ setPublishModal }) {
+  const navigate = useNavigate();
   const handlePublish = () => setPublishModal(true);
 
   return (
     <StyledExit>
-      <Link to="/">
-        <div className="exit-container">
-          <ExitIcon />
-          나가기
-        </div>
-      </Link>
+      <div className="exit-container" onClick={() => navigate(-1)}>
+        <ExitIcon />
+        나가기
+      </div>
+
       <div className="button-container">
         <button className="temp-save">임시저장</button>
         <button className="save" onClick={handlePublish}>
@@ -29,16 +29,8 @@ const StyledExit = styled.div`
   display: flex;
   align-items: center;
 
-  a {
-    color: black;
-  }
   svg {
     margin: 0 5px;
-  }
-  a:hover,
-  svg:hover {
-    fill: #ff5a5a;
-    color: #ff5a5a;
   }
   .exit-container {
     display: flex;
@@ -46,6 +38,10 @@ const StyledExit = styled.div`
     float: left;
     cursor: pointer;
     font-size: 0.9rem;
+  }
+  .exit-container:hover {
+    fill: #ff5a5a;
+    color: #ff5a5a;
   }
   .button-container {
     margin: 0 auto;
