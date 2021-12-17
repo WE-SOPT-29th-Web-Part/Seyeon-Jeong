@@ -1,16 +1,23 @@
 import React from "react";
+import axios from "axios";
 import { useLocation, useNavigate } from "react-router";
 import styled from "styled-components";
 export default function Article() {
   const location = useLocation();
   const navigate = useNavigate();
   const { body, date, id, summary, tags, thumbnail, title } = location.state;
+
   const updateArticle = () => {
     navigate(`/post/update/${id}`, { state: location.state });
+  };
+  const deleteArticle = async () => {
+    await axios.delete(`http://localhost:5005/api/article/${id}`);
+    navigate("/");
   };
   const renderTags = () => {
     return tags.map((tag) => <StyledTag>{tag}</StyledTag>);
   };
+
   return (
     <StyledArticle>
       <StyledHeaderWrapper>
@@ -24,7 +31,7 @@ export default function Article() {
             </StyledInfo>
             <StyledUpdateWrapper>
               <button onClick={updateArticle}>수정</button>
-              <button>삭제</button>
+              <button onClick={deleteArticle}>삭제</button>
             </StyledUpdateWrapper>
           </div>
           <StyledTagInput>{renderTags()}</StyledTagInput>
@@ -54,6 +61,7 @@ const StyledHeaderWrapper = styled.div`
 `;
 const StyledInfoWrapper = styled.div`
   width: 100%;
+
   & > div {
     display: flex;
     width: 100%;
@@ -65,7 +73,6 @@ const StyledInfoWrapper = styled.div`
 `;
 const StyledInfo = styled.div`
   display: flex;
-  flex-shrink: 0;
   width: 100%;
 
   span:first-child {

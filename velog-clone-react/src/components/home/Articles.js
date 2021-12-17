@@ -11,7 +11,6 @@ function Articles() {
     const getArticles = async () => {
       try {
         const { data } = await axios.get("/api/article");
-        console.log(data);
         setArticles(data.reverse());
       } catch (err) {
         console.error(err);

@@ -3,18 +3,19 @@ import React, { useState, useLayoutEffect } from "react";
 import { useNavigate } from "react-router";
 import { gsap } from "gsap";
 import styled from "styled-components";
-function PublishModal({ setPublishModal, newPost }) {
-  const [summaryInput, setSummaryInput] = useState(newPost.summary);
+function PublishModal({ setPublishModal, postInfo }) {
+  const { info, forUpdate, id } = postInfo;
+  const [summaryInput, setSummaryInput] = useState(info.summary);
   const [imgInfo, setImgInfo] = useState({
     imgName: null,
-    imgUrl: newPost.thumbnail,
+    imgUrl: info.thumbnail,
   });
   const [modalOpen, setModalOpen] = useState("");
   const navigate = useNavigate();
 
   const updateNewPost = () => {
-    newPost.summary = summaryInput;
-    newPost.thumbnail = imgInfo.imgUrl;
+    info.summary = summaryInput;
+    info.thumbnail = imgInfo.imgUrl;
   };
 
   const handleSummary = (e) => {
@@ -29,14 +30,16 @@ function PublishModal({ setPublishModal, newPost }) {
 
   const publishData = async () => {
     updateNewPost();
-    await axios.post("http://localhost:5005/api/article", newPost);
+    forUpdate
+      ? await axios.patch(`http://localhost:5005/api/article/${id}`, info)
+      : await axios.post("http://localhost:5005/api/article", info);
     await gsap.to(".post", {
       opacity: 0,
       rotate: 180,
       duration: 1.5,
       ease: "elastic.in(1, 0.3)",
     });
-    navigate(-1);
+    navigate("/");
   };
 
   const fileLoader = ({ target: { files } }) => {

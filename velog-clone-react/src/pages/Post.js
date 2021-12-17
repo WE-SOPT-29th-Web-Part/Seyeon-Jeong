@@ -14,12 +14,16 @@ function Post() {
   const [storyInput, setStoryInput] = useState(state ? state.body : "");
   const [tags, setTags] = useState(state ? state.tags : []);
   const [publishModal, setPublishModal] = useState(false);
-  const newPost = {
-    title: titleInput,
-    body: storyInput,
-    tags,
-    summary: state ? state.summary : "",
-    thumbnail: state ? state.thumbnail : "",
+  const postInfo = {
+    id: state?.id,
+    info: {
+      title: titleInput,
+      body: storyInput,
+      tags,
+      summary: state ? state.summary : "",
+      thumbnail: state ? state.thumbnail : "",
+    },
+    forUpdate: state && true,
   };
   useEffect(() => {
     const ani = gsap.to(".post", { duration: 1, ease: "bounce.out", y: 0 });
@@ -32,7 +36,7 @@ function Post() {
       <StoryInput storyInput={storyInput} setStoryInput={setStoryInput} />
       <Exit setPublishModal={setPublishModal} />
       {publishModal && (
-        <PublishModal setPublishModal={setPublishModal} newPost={newPost} />
+        <PublishModal setPublishModal={setPublishModal} postInfo={postInfo} />
       )}
     </StyledPost>
   );
