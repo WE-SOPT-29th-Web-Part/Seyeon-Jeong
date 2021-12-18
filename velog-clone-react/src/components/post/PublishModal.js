@@ -1,5 +1,5 @@
-import axios from "axios";
 import React, { useState, useLayoutEffect } from "react";
+import fetcher from "../../api/api.js";
 import { useNavigate } from "react-router";
 import { gsap } from "gsap";
 import styled from "styled-components";
@@ -31,8 +31,8 @@ function PublishModal({ setPublishModal, postInfo }) {
   const publishData = async () => {
     updateNewPost();
     forUpdate
-      ? await axios.patch(`http://localhost:5005/api/article/${id}`, info)
-      : await axios.post("http://localhost:5005/api/article", info);
+      ? await fetcher.patch(`/${id}`, info)
+      : await fetcher.post("", info);
     await gsap.to(".post", {
       opacity: 0,
       rotate: 180,

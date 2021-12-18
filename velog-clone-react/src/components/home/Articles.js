@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import styled from "styled-components";
 import Article from "./Article";
+import fetcher from "../../api/api";
 
 function Articles() {
-  axios.defaults.baseURL = "http://localhost:5005";
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
     const getArticles = async () => {
       try {
-        const { data } = await axios.get("/api/article");
+        const { data } = await fetcher.get();
+        console.log(data);
         setArticles(data.reverse());
       } catch (err) {
         console.error(err);

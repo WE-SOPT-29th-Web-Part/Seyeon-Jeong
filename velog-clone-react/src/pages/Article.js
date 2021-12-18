@@ -1,7 +1,7 @@
 import React from "react";
-import axios from "axios";
 import { useLocation, useNavigate } from "react-router";
 import styled from "styled-components";
+import fetcher from "../api/api";
 export default function Article() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ export default function Article() {
     navigate(`/post/update/${id}`, { state: location.state });
   };
   const deleteArticle = async () => {
-    await axios.delete(`http://localhost:5005/api/article/${id}`);
+    await fetcher.delete(id);
     navigate("/");
   };
   const renderTags = () => {
